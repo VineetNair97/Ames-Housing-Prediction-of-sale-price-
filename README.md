@@ -23,11 +23,10 @@ area. The average sale value of the properties in the dataset is $ 180,796.06 wi
 
 We prepared our data in multiple steps:
 
-1. Duplicated entries
+1. Duplicated entries:
 In the first step, we tried to see if there are any duplicate rows or columns in the dataset and we found none.
-2. Missing values
+2. Missing values:
 We found out that there were total 13997 entries listed as missing values and that was distributed among 27 variables out of 82.
-3. Outliers
 for this dataset, there are surprisingly few nulls in the numeric data. Almost all the nulls are in the categorical variables.
 We also found out that some of the variables like ‘Pool QC’, ‘Alley’, ‘Misc. Feature’, ‘Fence’ and ‘Fireplace Qu’ had the highest percentage of missing values. Upon further inspection, we
 realized that all these variables had class ‘NA ‘which means the feature isn’t available in the house but could have been inferred as missing values. So, we checked each variable
@@ -43,8 +42,7 @@ available as they also clearly had class showing that feature is not available.
 c) For variable ‘Lot frontage’, we plotted the histogram and realized that it is somehow normally distributed. So, missing values were replaced with mean.
 
 d) For all the variables related to Garage like ‘Garage Yr Blt’, ‘Garage Cond’, ‘Garage Qual’,‘Garage Finish’, ‘Garage Type’ , ‘Garage Cars ‘ and ‘Garage Area’, we checked if the missing
-values are missing in all these variables or not as they can again signify that there was no garage in those houses sold. We found that 157 rows in ‘Garage Cars’ and ‘Garage Area’ had 
-4 value 0 while all other corresponding cells in other variables had null values which told us that these 157 houses had no garage in them. So, we imputed missing values in these rows
+values are missing in all these variables or not as they can again signify that there was no garage in those houses sold. We found that 157 rows in ‘Garage Cars’ and ‘Garage Area’ had value 0 while all other corresponding cells in other variables had null values which told us that these 157 houses had no garage in them. So, we imputed missing values in these rows
 with text ‘Not available’ except for ‘Garage Yr Blt’ which we imputed with 0. We still had 1 or 2 missing values in these variables which we imputed with the mode.
 
 e) We repeated the same process for all the variables related to Basement ‘Bsmt Exposure’,‘BsmtFin Type 1’, ‘BsmtFin Type 2’, ‘Bsmt Qual’, ‘Bsmt Cond’, ‘Total Bsmt SF’ and ‘Total Bsmt
@@ -85,11 +83,7 @@ and 0.5 which ensures that curve is more symmetric and the errors in predicting 
 The distribution of target variable before and after log transformation
 The residual plot between ‘SalePrice’ and one of the highly correlated variables with it ‘Gr Liv Area’ also got better after the transformation.
 
-e. Our final step was to change all categorical variables to numerical as the models that we plan to use require only numerical values. We had 43 categorical variables in dataset among
-which 22 were ordinal and 21 were nominal. For Ordinal variables, we simply replaced the categories with ordinal numbers. For example: In ‘Alley’ variable, there are three categories:
-Paved, Graveled and not available. So, if there is no alley, it is one major drawback of the house, so we replaced it with zero. If it is gravel which is better than not having alley, we
-replaced it with 1 and if it is paved which is best option among all, we replaced it with 2. Weused a similar strategy to replace all other ordinal variables with ordinal numbers. For
-nominal variables, we used one-hot encoding in sci-kit learn library so that we don’t weightdifferent values improperly.
+e. Our final step was to change all categorical variables to numerical as the models that we plan to use require only numerical values. We had 43 categorical variables in dataset among which 22 were ordinal and 21 were nominal. For Ordinal variables, we simply replaced the categories with ordinal numbers. For example: In ‘Alley’ variable, there are three categories:Paved, Graveled and not available. So, if there is no alley, it is one major drawback of the house, so we replaced it with zero. If it is gravel which is better than not having alley, we replaced it with 1 and if it is paved which is best option among all, we replaced it with 2. Weused a similar strategy to replace all other ordinal variables with ordinal numbers. For nominal variables, we used one-hot encoding in sci-kit learn library so that we don’t weight different values improperly.
 
 ## Model Induction
 
@@ -132,14 +126,10 @@ Cross Validation is one of the techniques used to evaluate the performance of ma
 The result that we get from each model is summarized in the figure above. As we can see in the picture, we got lowest mean squared error from Ridge Regression followed by Multiple Linear Regression and Lasso Regression.
 
 
-3. Learning Curve
+3. Learning Curve: 
 While evaluating a model, we should also make sure that our model generalizes. A good model is one that not only performs well on data seen during training but, also on unseen data.Learning curve helps us to measure generalization performance of a model. In a learning curve,
 the performance of a model both on the training and validation set is plotted as a function of the training set size.
-
-
-
-We can see from the plot above that generalized performance for Lasso Regression and Neural Network are best among all. The test performance becomes similar with performance of
-training data as training size increases. For Ridge Regression, the performance on test set never gets closer to the performance in training set.
+from the plot the generalized performance for Lasso Regression is best among all. The test performance becomes similar with performance of training data as training size increases. For Ridge Regression, the performance on test set never gets closer to the performance in training set.
 
 ## Result
 
